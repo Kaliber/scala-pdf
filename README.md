@@ -26,6 +26,13 @@ Please see the `Test.scala` file for an example of loading.
 
 <table>
   <tr>
+    <td>0.12</td>
+    <td>2018-04-12</td>
+    <td>Upgrade to Scala 2.12.x</td>
+    <td>Change test framework to org.scalatest</td>
+    <td></td>
+  <tr>
+  <tr>
     <td>0.11</td>
     <td>2016-04-29</td>
     <td>Changed organisation</td>

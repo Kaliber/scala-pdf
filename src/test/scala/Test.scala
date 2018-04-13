@@ -2,12 +2,12 @@ import java.net.URLClassLoader
 import java.nio.file.{Files, Path, Paths}
 
 import net.kaliber.pdf.PdfRenderer
-import org.qirx.littlespec.Specification
+import org.scalatest._
 import org.xhtmlrenderer.pdf.ITextRenderer
 
 import scala.io.Source
 
-object Test extends Specification {
+class Test extends FlatSpec with Matchers {
 
   val examples: Path = Paths.get("./example")
   val `test.pdf`: Path = examples resolve "test.pdf"
@@ -22,7 +22,7 @@ object Test extends Specification {
     |A CUSTOM FONT.
     |
     |${`test.pdf`}
-    |============================""".stripMargin - {
+    |============================""".stripMargin should s"produce file ${`test.pdf`}" in {
      val classLoader = new URLClassLoader(Array(examples.toUri.toURL))
 
      val body = {
@@ -37,7 +37,8 @@ object Test extends Specification {
 
      Files write (`test.pdf`, pdf)
 
-     todo
+     val fileExist = Files.isRegularFile(`test.pdf`) & Files.isReadable(`test.pdf`)
+     fileExist === (true)
 
     // Todo Write proper tests please
 
